@@ -25,8 +25,16 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', [TableController::class, 'taoBan']);
         Route::post('/tim-ban', [TableController::class, 'timKiem']);
         Route::delete('{id}', [TableController::class, 'xoaBan']);
-        Route::put('/', [TableController::class, 'capNhat']);
+        Route::put('/', [TableController::class, 'capNhat']);     
         Route::put('/doi-trang-thai', [TableController::class, 'doiTrangThai']);
+    });
+    Route::prefix('/phong')->group(function () {
+        Route::get('/', [RoomController::class, 'layPhong']);
+        Route::post('/', [RoomController::class, 'taoPhong']);
+        Route::post('/tim-phong', [RoomController::class, 'timKiem']);
+        Route::delete('{id}', [RoomController::class, 'xoaPhong']);
+        Route::put('/', [RoomController::class, 'capNhat']);
+        Route::put('/doi-trang-thai', [RoomController::class, 'doiTrangThai']);
     });
 });
 
