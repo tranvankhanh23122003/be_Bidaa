@@ -36,6 +36,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/', [RoomController::class, 'capNhat']);
         Route::put('/doi-trang-thai', [RoomController::class, 'doiTrangThai']);
     });
+    Route::prefix('/lich-lam')->group(function () {
+        Route::get('/', [ScheduleController::class, 'layLich']);
+        Route::post('/', [ScheduleController::class, 'taoLich']);
+        Route::post('/tim-lich', [ScheduleController::class, 'timKiem']);
+        Route::delete('{id}', [ScheduleController::class, 'xoaLich']);
+        Route::put('/', [ScheduleController::class, 'capNhat']);
+    });
 });
 
 Route::post('/dang-ky',[UserController::class,'dangKy']);
