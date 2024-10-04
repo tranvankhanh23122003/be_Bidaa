@@ -43,6 +43,45 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('{id}', [ScheduleController::class, 'xoaLich']);
         Route::put('/', [ScheduleController::class, 'capNhat']);
     });
+    Route::prefix('/hoa-don')->group(function () {
+        Route::get('/', [BillContoller::class, 'layHoaDon']);
+        Route::post('/', [BillContoller::class, 'taoHoaDon']);
+        Route::post('/tim-hoaDon', [BillContoller::class, 'timKiem']);
+        Route::delete('{id}', [BillContoller::class, 'xoaHoaDon']);
+        Route::put('/', [BillContoller::class, 'capNhat']);
+    });
+    Route::prefix('/kho-hang')->group(function () {
+        Route::get('/', [WarehouseController::class, 'layKho']);
+        Route::post('/', [WarehouseController::class, 'taoKho']);
+        Route::post('/tim-kho', [WarehouseController::class, 'timKiem']);
+        Route::delete('{id}', [WarehouseController::class, 'xoaKho']);
+        Route::put('/', [WarehouseController::class, 'capNhat']);
+        Route::put('/doi-trang-thai', [WarehouseController::class, 'doiTrangThai']);
+    });
+    Route::prefix('/don-hang')->group(function () {
+        Route::get('/', [OderController::class, 'layDonHang']);
+        Route::post('/', [OderController::class, 'taoDonHang']);
+        Route::post('/tim-DonHang', [OderController::class, 'timKiem']);
+        Route::delete('{id}', [OderController::class, 'xoaDonHang']);
+        Route::put('/', [OderController::class, 'capNhat']);
+        Route::put('/doi-trang-thai', [OderController::class, 'doiTrangThai']);
+    });
+    Route::prefix('/binh-luan')->group(function () {
+        Route::get('/', [CommentController::class, 'layBinhLuan']);
+        Route::post('/', [CommentController::class, 'taoBinhLuan']);
+        Route::post('/tim-BinhLuan', [CommentController::class, 'timKiem']);
+        Route::delete('{id}', [CommentController::class, 'xoaBinhLuan']);
+        Route::put('/', [CommentController::class, 'capNhat']);
+        Route::put('/doi-trang-thai', [CommentController::class, 'doiTrangThai']);
+    });
+    Route::prefix('/danh-gia')->group(function () {
+        Route::get('/', [EvaluateController::class, 'layDanhGia']);
+        Route::post('/', [EvaluateController::class, 'taoDanhGia']);
+        Route::post('/tim-DanhGia', [EvaluateController::class, 'timKiem']);
+        Route::delete('{id}', [EvaluateController::class, 'xoaDanhGia']);
+        Route::put('/', [EvaluateController::class, 'capNhat']);
+        Route::put('/doi-trang-thai', [EvaluateController::class, 'doiTrangThai']);
+    });
 });
 
 Route::post('/dang-ky',[UserController::class,'dangKy']);
