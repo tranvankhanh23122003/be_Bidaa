@@ -13,8 +13,8 @@ class TableController extends Controller
 {
     public function layBan()
     {
-        $data = Table::join('rooms', 'rooms.id', '=', 'tables.roomID')
-            ->select('tables.*', 'rooms.number')
+        $data = Table::leftJoin('rooms', 'rooms.id', '=', 'tables.roomID')
+            ->select('tables.*', 'rooms.number as room_number')
             ->get();
 
         if ($data->isEmpty()) {
@@ -36,7 +36,7 @@ class TableController extends Controller
             "number" => $request->number,
             "type" => $request->type,
             "roomID" => $request->roomID,
-            "status" => TableStatus::OPEN,
+            "status" => $request->status,
         ]);
         return response()->json([
             'status' => Response::HTTP_CREATED,

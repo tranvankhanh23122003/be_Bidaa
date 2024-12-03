@@ -8,41 +8,43 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    public function layPhong(){
+    public function layPhong()
+    {
         $data = Room::get();
         return response()->json([
             'status' => 200,
-            'data'=> $data
+            'data' => $data
         ]);
     }
     public function taoPhong(Request $request)
     {
         Room::create([
-            "number"=>$request-> number,
-            "type"=>$request->type ,
-            "status" => 0,
+            "number" => $request->number,
+            "type" => $request->type,
+            "status" => $request->status,
         ]);
         return response()->json([
             'status' => 201,
             'message' => 'Tạo phòng thành công'
         ]);
     }
-    public function xoaPhong($id){
-            Room::where('id', $id)->delete();
-            return response()->json([
-                'status'            =>   200,
-                'message'           =>   'Xóa phòng thành công!',
-            ]);
-        }
-    public function capNhat(Request $request){
+    public function xoaPhong($id)
+    {
+        Room::where('id', $id)->delete();
+        return response()->json([
+            'status'            =>   200,
+            'message'           =>   'Xóa phòng thành công!',
+        ]);
+    }
+    public function capNhat(Request $request)
+    {
         $room = Room::find($request->id);
 
         if ($room) {
-            // Cập nhật bản ghi
             $updated = Room::where('id', $request->id)
                 ->update([
-                    "number"=>$request-> number,
-                    "type"=>$request->type ,
+                    "number" => $request->number,
+                    "type" => $request->type,
                     'status' => $request->status,
                 ]);
 
@@ -64,24 +66,24 @@ class RoomController extends Controller
             ]);
         }
     }
-    public function doiTrangThai(Request $request){
+    public function doiTrangThai(Request $request)
+    {
         Room::where('id', $request->id)
-        ->update([
-            "status" => $request->status,
+            ->update([
+                "status" => $request->status,
             ]);
-            return response()->json([
-                'status'            =>   200,
-                'message'           =>   'Đã cập nhật trạng thái thành công!',
-                ]);
+        return response()->json([
+            'status'            =>   200,
+            'message'           =>   'Đã cập nhật trạng thái thành công!',
+        ]);
     }
-    public function timKiem(Request $request){
-        $key = "%".$request->number."%";
-        $data = Room::where("number","like",$key)->get();
+    public function timKiem(Request $request)
+    {
+        $key = "%" . $request->number . "%";
+        $data = Room::where("number", "like", $key)->get();
 
         return response()->json([
             'Room' => $data,
         ]);
-
     }
 }
-

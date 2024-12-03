@@ -37,7 +37,6 @@ class CommentController extends Controller
         $comment = Comment::find($request->id);
 
         if ($comment) {
-            // Cập nhật bản ghi
             $updated = Comment::where('id', $request->id)
                 ->update([
                     "userID"=>$request->userID,

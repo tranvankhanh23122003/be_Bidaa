@@ -78,6 +78,22 @@ class UserController extends Controller
             ]);
         }
     }
+    public function checkAdmin()
+    {
+         $check = Auth::guard('sanctum')->user();
+
+        if($check && $check instanceof \App\Models\User)
+        {
+            return response()->json([
+                'status'    =>  true
+            ]);
+        } else {
+            return response()->json([
+                'status'        =>  false,
+                'message'       =>  "Bạn chưa đăng nhập hệ thống!"
+            ]);
+        }
+    }
 
     public function getUser(Request $request)
     {
@@ -89,7 +105,7 @@ class UserController extends Controller
     // public function logout()
     // {
     //     $user = Auth::guard('sanctum')->user();
-    
+
     //     if($user) {
     //         DB::table('personal_access_tokens')
     //         ->where('id', $user->currentAccessToken()->id)
@@ -106,5 +122,5 @@ class UserController extends Controller
     //         ]);
     //     }
     // }
-    
+
 }
