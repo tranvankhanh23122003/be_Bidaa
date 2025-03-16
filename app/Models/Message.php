@@ -5,13 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Bill extends Model
+class Message extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'customerName',
-        'customerPhone',
-        'totalAmount',
-    ];
+    protected $fillable = ['user_id', 'text'];
 }

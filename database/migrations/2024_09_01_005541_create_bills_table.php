@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
-            $table->integer("oderID");
-            $table->string("amount");
+            $table->integer("totalAmount");
+            $table->string("customerName");
+            $table->string("customerPhone");
             $table->timestamps();
         });
     }

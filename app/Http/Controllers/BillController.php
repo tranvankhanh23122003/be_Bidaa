@@ -9,9 +9,7 @@ class BillController extends Controller
 {
     public function layHoaDon()
     {
-        $data = Bill::leftJoin('oders', 'oders.id', 'bills.oderID')
-            ->leftJoin('users', 'users.id', 'oders.userID')
-            ->get();
+        $data = Bill::get();
         // $data = Bill::all();
         return response()->json([
             'status' => 200,
@@ -23,7 +21,7 @@ class BillController extends Controller
     {
         $request->validate([
             'customerName' => 'required|string|max:255',
-            'customerPhone' => 'required|string|max:15',
+            'customerPhone' => 'required|string|min:10|max:11',
             'totalAmount' => 'required|numeric|min:0',
         ]);
 
