@@ -12,6 +12,7 @@ class Table extends Model
         "number",
         "type",
         "roomID",
+        "image",
         "status",
     ];
 }

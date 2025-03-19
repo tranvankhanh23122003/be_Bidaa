@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\BillController;
-
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\DatBanController;
 use App\Http\Controllers\EvaluateController;
 use App\Http\Controllers\OderController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\SupportController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WarehouseController;
@@ -87,6 +89,17 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/', [EvaluateController::class, 'capNhat']);
         Route::put('/doi-trang-thai', [EvaluateController::class, 'doiTrangThai']);
     });
+    Route::get('/messages', [ChatController::class, 'index']);
+    Route::post('/messages', [ChatController::class, 'store']);
+    Route::post('/support', [SupportController::class, 'store']);
+
+    Route::prefix('/dat-ban')->group(function () {
+    Route::get('/', [DatBanController::class, 'Datban']);
+    Route::post('/', [DatBanController::class, 'store']);
+    Route::get('/{id}', [DatBanController::class, 'destroy']);
+    });
+
+
     Route::get('/kiem-tra-admin', [UserController::class, 'checkAdmin']);
 });
 

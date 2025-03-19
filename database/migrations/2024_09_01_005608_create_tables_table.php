@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string("number");
             $table->string("type");
             $table->string("roomID");
+            $table->string("image");
             $table->integer("status");
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */

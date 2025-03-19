@@ -78,12 +78,12 @@ class UserController extends Controller
             ]);
         }
     }
+
     public function checkAdmin()
     {
-         $check = Auth::guard('sanctum')->user();
+        $check = Auth::guard('sanctum')->user();
 
-        if($check && $check instanceof \App\Models\User)
-        {
+        if ($check && $check instanceof \App\Models\User) {
             return response()->json([
                 'status'    =>  true
             ]);

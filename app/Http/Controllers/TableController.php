@@ -36,6 +36,7 @@ class TableController extends Controller
             "number" => $request->number,
             "type" => $request->type,
             "roomID" => $request->roomID,
+            "image" => $request->image,
             "status" => $request->status,
         ]);
         return response()->json([

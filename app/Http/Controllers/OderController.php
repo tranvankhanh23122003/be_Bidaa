@@ -68,7 +68,6 @@ class OderController extends Controller
     public function timKiem(Request $request){
         $key = "%".$request->tableID."%";
         $data = Oder::where("tableID","like",$key)->get();
-
         return response()->json([
             'Oder' => $data,
         ]);
